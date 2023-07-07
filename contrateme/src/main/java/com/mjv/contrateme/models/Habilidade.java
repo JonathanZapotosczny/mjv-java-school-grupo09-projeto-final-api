@@ -31,5 +31,5 @@ public class Habilidade {
     private String habilidade;
 
     @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "habilidades")
-    private List<CadastroCandidato> candidato = new ArrayList<>();
+    private List<CadastroCandidato> candidatos = new ArrayList<>();
 }
