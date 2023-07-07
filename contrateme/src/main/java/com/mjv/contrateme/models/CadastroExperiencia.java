@@ -31,7 +31,6 @@ public class CadastroExperiencia {
     @Column(nullable = false)
     private LocalDate dataContratacao;
 
-    @Column(nullable = false)
     private LocalDate dataDesligamento;
 
     @OneToOne(cascade = CascadeType.PERSIST)
