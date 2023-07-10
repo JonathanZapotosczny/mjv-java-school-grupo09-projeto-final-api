@@ -1,9 +1,11 @@
 package com.mjv.contrateme.services;
+import com.mjv.contrateme.dtos.EmpresaDto;
 import com.mjv.contrateme.exceptions.NotFoundException;
 import com.mjv.contrateme.models.Empresa;
 import com.mjv.contrateme.repositories.EmpresaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -23,6 +25,15 @@ public class EmpresaService {
         Optional<Empresa> optEmpresa = this.empresaRepository.findById(id);
 
         return optEmpresa.orElseThrow(() -> new NotFoundException("Empresa não encontrada na base de dados."));
+
+    }
+
+    @Transactional
+    public Empresa create(EmpresaDto empresaDto) {
+
+        Empresa empresa = modelMapper.map(empresaDto, Empresa.class);
+
+        return empresaRepository.save(empresa);
 
     }
 
