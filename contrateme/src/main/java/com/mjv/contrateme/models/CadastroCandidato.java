@@ -46,11 +46,12 @@ public class CadastroCandidato {
     @Column(nullable = false)
     private Endereco endereco;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "candidato")
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "candidato_experiencia", joinColumns = @JoinColumn(name = "candidato_id"), inverseJoinColumns = @JoinColumn(name = "experiencia_id"))
     private List<CadastroExperiencia> experiencias = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(name = "candidato_habilidade")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "candidato_habilidade", joinColumns = @JoinColumn(name = "candidato_id"), inverseJoinColumns = @JoinColumn(name = "habilidade_id"))
     private List<Habilidade> habilidades = new ArrayList<>();
 
     @Embedded
