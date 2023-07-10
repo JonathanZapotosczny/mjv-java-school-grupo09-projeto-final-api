@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class EmrpesaService {
+public class EmpresaService {
 
     private final EmpresaRepository empresaRepository;
     private final ModelMapper modelMapper;
 
-    public EmrpesaService(EmpresaRepository empresaRepository, ModelMapper modelMapper) {
+    public EmpresaService(EmpresaRepository empresaRepository, ModelMapper modelMapper) {
         this.empresaRepository = empresaRepository;
         this.modelMapper = modelMapper;
     }
