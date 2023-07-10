@@ -28,9 +28,10 @@ public class CadastroExperiencia {
     @Column(nullable = false)
     private boolean EmpregoAtual;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "DATE")
     private LocalDate dataContratacao;
 
+    @Column(columnDefinition = "DATE")
     private LocalDate dataDesligamento;
 
     @OneToOne(cascade = CascadeType.PERSIST)

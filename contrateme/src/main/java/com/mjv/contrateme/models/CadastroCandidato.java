@@ -27,7 +27,7 @@ public class CadastroCandidato {
     @Column(nullable = false, unique = true, length = 14)
     private String cpf;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "DATE")
     private LocalDate dataNascimento;
 
     @Embedded

@@ -1,5 +1,6 @@
 package com.mjv.contrateme.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,7 @@ public class CadastroCandidatoDto {
     private String cpf;
 
     @NotNull(message = "O campo DATA DE NASCIMENTO é obrigátorio!")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataNascimento;
 
     @NotNull(message = "Os campos de TELEFONE CELULAR são obrigátorios!")
