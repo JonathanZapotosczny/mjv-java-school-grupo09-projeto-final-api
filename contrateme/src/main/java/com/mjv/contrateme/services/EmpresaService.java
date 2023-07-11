@@ -5,8 +5,9 @@ import com.mjv.contrateme.models.Empresa;
 import com.mjv.contrateme.repositories.EmpresaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service
@@ -28,7 +29,16 @@ public class EmpresaService {
 
     }
 
-    @Transactional
+   public Page<Empresa> findAll(Pageable pageable) {
+        return this.empresaRepository.findAll(pageable);
+
+   }
+   @Transactional
+   public Empresa create(EmpresaDto empresaDto) {
+        Empresa empresa = modelMapper.map(empresaDto, Empresa.class);
+        return empresaRepository.save(empresa);
+      }
+  @Transactional
     public Empresa update(EmpresaDto empresaDto, Integer id) {
         Optional<Empresa> optEmpresa = this.empresaRepository.findById(id);
 

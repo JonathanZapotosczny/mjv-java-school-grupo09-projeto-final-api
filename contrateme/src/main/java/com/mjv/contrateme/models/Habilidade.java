@@ -30,6 +30,6 @@ public class Habilidade {
     @Column(nullable = false, length = 60)
     private String habilidade;
 
-    @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "habilidades")
-    private List<CadastroCandidato> candidatos = new ArrayList<>();
+    /*@ManyToMany(mappedBy = "habilidades")
+    private List<CadastroCandidato> candidatos;*/
 }

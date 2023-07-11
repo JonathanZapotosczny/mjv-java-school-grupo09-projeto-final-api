@@ -1,5 +1,8 @@
 package com.mjv.contrateme.resources;
 
+import com.mjv.contrateme.dtos.CadastroCandidatoDto;
+import com.mjv.contrateme.dtos.EmpresaDto;
+import com.mjv.contrateme.models.CadastroCandidato;
 import com.mjv.contrateme.dtos.CidadeDto;
 import com.mjv.contrateme.dtos.EmpresaDto;
 import com.mjv.contrateme.models.Cidade;
@@ -8,6 +11,12 @@ import com.mjv.contrateme.services.EmpresaService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -28,6 +37,15 @@ public class EmpresaResource {
 
         return ResponseEntity.status(HttpStatus.OK).body(this.empresaService.findById(id));
 
+    }
+    @PostMapping
+    public ResponseEntity<Empresa> createEmpresa(@RequestBody @Valid EmpresaDto empresaDto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.empresaService.create(empresaDto));
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<Empresa>> getAllEmpresas(Pageable pageable){
+        return ResponseEntity.status(HttpStatus.OK).body(this.empresaService.findAll(pageable));
     }
 
     @PutMapping("/{id}")
