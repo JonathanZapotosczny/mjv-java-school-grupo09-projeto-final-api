@@ -18,7 +18,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class CadastroCandidatoDto {
 
     @NotBlank(message = "O campo NOME é obrigátorio!")

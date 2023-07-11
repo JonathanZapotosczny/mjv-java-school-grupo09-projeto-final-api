@@ -2,7 +2,6 @@ package com.mjv.contrateme.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mjv.contrateme.enums.RegimeContratacao;
-import com.mjv.contrateme.models.Profissao;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +13,6 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class CadastroExperienciaDto {
 
     @NotNull(message = "O campo SALÁRIO é obrigátorio!")

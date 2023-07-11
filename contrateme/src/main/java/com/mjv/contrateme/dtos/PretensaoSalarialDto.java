@@ -10,7 +10,6 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class PretensaoSalarialDto {
 
     @NotNull(message = "O campo VALOR MÍNIMO é obrigátorio!")

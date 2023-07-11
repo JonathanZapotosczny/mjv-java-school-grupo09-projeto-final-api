@@ -1,15 +1,14 @@
 package com.mjv.contrateme.exceptions.advices;
 
-import java.util.Date;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.mjv.contrateme.exceptions.NotFoundException;
 import com.mjv.contrateme.exceptions.message.MessageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 @ControllerAdvice
 public class NotFoundExceptionAdvice {

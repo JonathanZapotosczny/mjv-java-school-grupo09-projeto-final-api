@@ -11,7 +11,6 @@ import javax.persistence.Embeddable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
-
 public class Celular {
 
     @Column(nullable = false)
