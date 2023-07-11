@@ -1,10 +1,12 @@
 package com.mjv.contrateme.services;
+import com.mjv.contrateme.dtos.ProfissaoDto;
 import com.mjv.contrateme.exceptions.NotFoundException;
 import com.mjv.contrateme.models.Profissao;
 import com.mjv.contrateme.repositories.ProfissaoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -24,6 +26,21 @@ public class ProfissaoService {
 
         return optProfissao.orElseThrow(() -> new NotFoundException("Profissão não encontrada na base de dados."));
 
+    }
+
+    @Transactional
+    public Profissao update(ProfissaoDto profissaoDto, Integer id) {
+
+        Optional<Profissao> optProfissao = this.profissaoRepository.findById(id);
+
+        if(optProfissao.isEmpty()) {
+            throw new NotFoundException("Profissão não encontrada");
+        }
+
+        Profissao profissaoAtualizada = this.modelMapper.map(profissaoDto, Profissao.class);
+        profissaoAtualizada.setId(optProfissao.get().getId());
+
+        return this.profissaoRepository.save(profissaoAtualizada);
     }
 
 }
