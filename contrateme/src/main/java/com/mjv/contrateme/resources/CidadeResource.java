@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @RestController
 @RequestMapping("/v1/contratame/cidade")
@@ -26,6 +28,11 @@ public class CidadeResource {
 
         return ResponseEntity.status(HttpStatus.OK).body(this.cidadeService.findById(id));
 
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<Cidade>> getAllCidades(Pageable pageable){
+        return ResponseEntity.status(HttpStatus.OK).body(this.cidadeService.findAll(pageable));
     }
 
 }
