@@ -4,6 +4,8 @@ import com.mjv.contrateme.models.Empresa;
 import com.mjv.contrateme.repositories.EmpresaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
 
@@ -24,6 +26,10 @@ public class EmpresaService {
 
         return optEmpresa.orElseThrow(() -> new NotFoundException("Empresa não encontrada na base de dados."));
 
+    }
+
+    public Page<Empresa> findAll(Pageable pageable) {
+        return this.empresaRepository.findAll(pageable);
     }
 
 }
