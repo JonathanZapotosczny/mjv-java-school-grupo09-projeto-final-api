@@ -5,6 +5,9 @@ import com.mjv.contrateme.models.Cidade;
 import com.mjv.contrateme.repositories.CidadeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
@@ -28,6 +31,10 @@ public class CidadeService {
 
     }
 
+    public Page<Cidade> findAll(Pageable pageable){
+        return this.cidadeRepository.findAll(pageable);
+    }
+  
     @Transactional
     public Cidade create(CidadeDto cidadeDto) {
 
@@ -36,6 +43,4 @@ public class CidadeService {
         return cidadeRepository.save(cidade);
 
     }
-
-
 }
