@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -31,5 +32,16 @@ public class CandidatoService {
 
     public Page<CadastroCandidato> findAll(Pageable pageable) {
         return this.candidatoRepository.findAll(pageable);
+    }
+
+    @Transactional
+    public void delete(Integer id) {
+        Optional<CadastroCandidato> optCandidato = candidatoRepository.findById(id);
+
+        if (optCandidato.isEmpty()) {
+            throw new NotFoundException("Candidato não encotrado!");
+        }
+
+        candidatoRepository.deleteById(id);
     }
 }

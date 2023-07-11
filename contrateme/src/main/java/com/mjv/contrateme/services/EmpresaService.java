@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -30,6 +31,17 @@ public class EmpresaService {
 
     public Page<Empresa> findAll(Pageable pageable) {
         return this.empresaRepository.findAll(pageable);
+    }
+
+    @Transactional
+    public void delete(Integer id) {
+        Optional<Empresa> optEmpresa = empresaRepository.findById(id);
+
+        if (optEmpresa.isEmpty()) {
+            throw new NotFoundException("Empresa não encontrada!");
+        }
+
+        empresaRepository.deleteById(id);
     }
 
 }

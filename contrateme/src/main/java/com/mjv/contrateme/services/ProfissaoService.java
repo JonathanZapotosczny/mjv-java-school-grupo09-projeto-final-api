@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -30,6 +31,17 @@ public class ProfissaoService {
 
     public Page<Profissao> findAll(Pageable pageable){
         return this.profissaoRepository.findAll(pageable);
+    }
+
+    @Transactional
+    public void delete(Integer id) {
+        Optional<Profissao> optProfissao = profissaoRepository.findById(id);
+
+        if (optProfissao.isEmpty()) {
+            throw new NotFoundException("Profissão não encontrada!");
+        }
+
+        profissaoRepository.deleteById(id);
     }
 
 }
