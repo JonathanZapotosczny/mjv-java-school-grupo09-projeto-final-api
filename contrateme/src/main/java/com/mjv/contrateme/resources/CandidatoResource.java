@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import javax.validation.Valid;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/contratame/candidato")
@@ -41,4 +43,10 @@ public class CandidatoResource {
         return ResponseEntity.status(HttpStatus.OK).body(this.candidatoservice.findAll(pageable));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<CadastroCandidato> updateCandidato(@PathVariable(value="id") Integer id,
+                                                             @RequestBody @Valid CadastroCandidatoDto candidatoDto) {
+
+        return ResponseEntity.status(HttpStatus.OK).body(this.candidatoService.update(candidatoDto, id));
+    }
 }

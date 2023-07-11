@@ -1,7 +1,7 @@
 package com.mjv.contrateme.services;
-
 import com.mjv.contrateme.dtos.CadastroCandidatoDto;
 import com.mjv.contrateme.dtos.CadastroExperienciaDto;
+import com.mjv.contrateme.dtos.CadastroCandidatoDto;
 import com.mjv.contrateme.exceptions.NotFoundException;
 import com.mjv.contrateme.models.*;
 import com.mjv.contrateme.repositories.CandidatoRepository;
@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
-
-
 import java.util.List;
 import java.util.Optional;
 
@@ -65,5 +63,19 @@ public class CandidatoService {
         candidato.setHabilidades(habilidades);
         return candidatoRepository.save(candidato);
 
+    }
+    @Transactional
+    public CadastroCandidato update(CadastroCandidatoDto cadastroCandidatoDto, Integer id) {
+        Optional<CadastroCandidato> optCandidato = this.candidatoRepository.findById(id);
+
+        if (optCandidato.isEmpty()) {
+            throw new NotFoundException("CANDIDATO não encontrado (a) na base de dados!");
+        }
+
+        CadastroCandidato cadastroCandidatoAtualizado = this.modelMapper.map(cadastroCandidatoDto, CadastroCandidato.class);
+        cadastroCandidatoAtualizado.setId(optCandidato.get().getId());
+        cadastroCandidatoAtualizado.setCpf(optCandidato.get().getCpf());
+
+        return this.candidatoRepository.save(cadastroCandidatoAtualizado);
     }
 }

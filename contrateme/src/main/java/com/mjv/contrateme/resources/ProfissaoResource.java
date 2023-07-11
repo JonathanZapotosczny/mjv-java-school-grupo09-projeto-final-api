@@ -1,8 +1,12 @@
 package com.mjv.contrateme.resources;
 
+
 import com.mjv.contrateme.dtos.EmpresaDto;
 import com.mjv.contrateme.dtos.ProfissaoDto;
 import com.mjv.contrateme.models.Empresa;
+import com.mjv.contrateme.dtos.CidadeDto;
+import com.mjv.contrateme.dtos.ProfissaoDto;
+import com.mjv.contrateme.models.Cidade;
 import com.mjv.contrateme.models.Profissao;
 import com.mjv.contrateme.services.ProfissaoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -44,6 +48,13 @@ public class ProfissaoResource {
     @PostMapping
     public ResponseEntity<Profissao> createProfissao(@RequestBody @Valid ProfissaoDto profissaoDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.profissaoService.create(profissaoDto));
-    }
+   }
+  
+  @PutMapping("/{id}")
+    public ResponseEntity<Profissao> updateProfissao(@PathVariable(value="id") Integer id,
+                                               @RequestBody @Valid ProfissaoDto profissaoDto) {
+
+        return ResponseEntity.status(HttpStatus.OK).body(this.profissaoService.update(profissaoDto, id));
+  }
 
 }

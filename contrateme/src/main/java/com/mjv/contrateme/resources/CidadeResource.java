@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+
 
 
 @RestController
@@ -44,6 +45,13 @@ public class CidadeResource {
     @GetMapping
     public ResponseEntity<Page<Cidade>> getAllCidades(Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(this.cidadeService.findAll(pageable));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Cidade> updateCidade(@PathVariable(value="id") Integer id,
+                                                             @RequestBody @Valid CidadeDto cidadeDto) {
+
+        return ResponseEntity.status(HttpStatus.OK).body(this.cidadeService.update(cidadeDto, id));
     }
 
 }
