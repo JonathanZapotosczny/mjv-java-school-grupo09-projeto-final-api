@@ -20,5 +20,5 @@ public class HabilidadeDto {
     private String habilidade;
 
     @NotEmpty(message = "O campo CANDIDATO é obrigátorio!")
-    private List<CadastroCandidato> candidatos = new ArrayList<>();
+    private int candidato;
 }

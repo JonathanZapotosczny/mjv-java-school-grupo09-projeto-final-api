@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
@@ -31,6 +32,6 @@ public class Endereco {
     @Column(nullable = false, length = 60)
     private String bairro;
 
-    @ManyToOne
+    @ManyToOne( cascade = CascadeType.ALL)
     private Cidade cidade;
 }
