@@ -1,11 +1,14 @@
 package com.mjv.contrateme.services;
+import com.mjv.contrateme.dtos.EmpresaDto;
 import com.mjv.contrateme.exceptions.NotFoundException;
 import com.mjv.contrateme.models.Empresa;
 import com.mjv.contrateme.repositories.EmpresaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -28,8 +31,14 @@ public class EmpresaService {
 
     }
 
-    public Page<Empresa> findAll(Pageable pageable) {
+   public Page<Empresa> findAll(Pageable pageable) {
         return this.empresaRepository.findAll(pageable);
-    }
+
+   }
+   @Transactional
+   public Empresa create(EmpresaDto empresaDto) {
+        Empresa empresa = modelMapper.map(empresaDto, Empresa.class);
+        return empresaRepository.save(empresa);
+      }
 
 }

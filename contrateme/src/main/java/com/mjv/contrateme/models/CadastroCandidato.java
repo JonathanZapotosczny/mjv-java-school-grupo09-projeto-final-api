@@ -27,7 +27,7 @@ public class CadastroCandidato {
     @Column(nullable = false, unique = true, length = 14)
     private String cpf;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "DATE")
     private LocalDate dataNascimento;
 
     @Embedded
@@ -46,12 +46,13 @@ public class CadastroCandidato {
     @Column(nullable = false)
     private Endereco endereco;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "candidato")
-    private List<CadastroExperiencia> experiencias = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "candidato_experiencia")
+    private List<CadastroExperiencia> experiencias;
 
     @ManyToMany
     @JoinTable(name = "candidato_habilidade")
-    private List<Habilidade> habilidades = new ArrayList<>();
+    private List<Habilidade> habilidades;
 
     @Embedded
     @Column(nullable = false)
