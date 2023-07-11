@@ -43,6 +43,6 @@ public class CadastroExperiencia {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Profissao profissao;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private CadastroCandidato candidato;
+  /*  @ManyToOne()
+    private CadastroCandidato candidato;*/
 }

@@ -46,13 +46,13 @@ public class CadastroCandidato {
     @Column(nullable = false)
     private Endereco endereco;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "candidato_experiencia", joinColumns = @JoinColumn(name = "candidato_id"), inverseJoinColumns = @JoinColumn(name = "experiencia_id"))
-    private List<CadastroExperiencia> experiencias = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "candidato_experiencia")
+    private List<CadastroExperiencia> experiencias;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "candidato_habilidade", joinColumns = @JoinColumn(name = "candidato_id"), inverseJoinColumns = @JoinColumn(name = "habilidade_id"))
-    private List<Habilidade> habilidades = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "candidato_habilidade")
+    private List<Habilidade> habilidades;
 
     @Embedded
     @Column(nullable = false)

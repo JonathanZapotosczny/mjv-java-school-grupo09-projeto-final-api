@@ -31,5 +31,5 @@ public class EnderecoDto {
     private String bairro;
 
     @NotNull(message = "O campo CIDADE é obrigátorio!")
-    private CidadeDto cidade;
+    private Integer cidade;
 }

@@ -29,6 +29,7 @@ public class CandidatoResource {
     }
     @PostMapping
     public ResponseEntity<CadastroCandidato> createCandidato(@RequestBody @Valid CadastroCandidatoDto candidatoDto) {
+        System.out.println("CPF RECEBIDO" + candidatoDto.getCpf());
         return ResponseEntity.status(HttpStatus.CREATED).body(this.candidatoService.create(candidatoDto));
     }
 

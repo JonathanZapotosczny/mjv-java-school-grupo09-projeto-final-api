@@ -32,7 +32,7 @@ public class CadastroExperienciaDto {
     private LocalDate dataDesligamento;
 
     @NotNull(message = "O campo EMPRESA é obrigátorio!")
-    private Integer empresa;
+    private EmpresaDto empresa;
 
     @NotNull(message = "O campo REGIME DE CONTRATAÇÃO é obrigátorio!")
     private RegimeContratacao regimeContratacao;
@@ -40,6 +40,8 @@ public class CadastroExperienciaDto {
     @NotNull(message = "O campo PROFISSÃO é obrigátorio!")
     private Integer profissao;
 
+/*
+circular references is discouraged and they are prohibited by default
     @NotNull(message = "O campo CANDIDATO é obrigátorio!")
-    private Integer candidato;
+    private Integer candidato;*/
 }
