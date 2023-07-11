@@ -5,6 +5,7 @@ import com.mjv.contrateme.models.CadastroCandidato;
 import com.mjv.contrateme.services.CandidatoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ public class CandidatoResource {
         return ResponseEntity.status(HttpStatus.OK).body(this.candidatoService.findById(id));
 
     }
+
     @PostMapping
     public ResponseEntity<CadastroCandidato> createCandidato(@RequestBody @Valid CadastroCandidatoDto candidatoDto) {
               return ResponseEntity.status(HttpStatus.CREATED).body(this.candidatoService.create(candidatoDto));
@@ -40,13 +42,18 @@ public class CandidatoResource {
 
     @GetMapping
     public ResponseEntity<Page<CadastroCandidato>> getAllCandidatos(Pageable pageable){
-        return ResponseEntity.status(HttpStatus.OK).body(this.candidatoservice.findAll(pageable));
+        return ResponseEntity.status(HttpStatus.OK).body(this.candidatoService.findAll(pageable));
     }
-
+   
     @PutMapping("/{id}")
     public ResponseEntity<CadastroCandidato> updateCandidato(@PathVariable(value="id") Integer id,
                                                              @RequestBody @Valid CadastroCandidatoDto candidatoDto) {
 
         return ResponseEntity.status(HttpStatus.OK).body(this.candidatoService.update(candidatoDto, id));
+    }
+   @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteCandidato(@PathVariable(value="id") Integer id) {
+        this.candidatoService.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Candidato deletado!");
     }
 }

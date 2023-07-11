@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import javax.transaction.Transactional;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -77,5 +78,18 @@ public class CandidatoService {
         cadastroCandidatoAtualizado.setCpf(optCandidato.get().getCpf());
 
         return this.candidatoRepository.save(cadastroCandidatoAtualizado);
+
     }
+  
+      @Transactional
+    public void delete(Integer id) {
+        Optional<CadastroCandidato> optCandidato = candidatoRepository.findById(id);
+
+        if (optCandidato.isEmpty()) {
+            throw new NotFoundException("Candidato não encotrado!");
+        }
+
+        candidatoRepository.deleteById(id);
+}
+  
 }

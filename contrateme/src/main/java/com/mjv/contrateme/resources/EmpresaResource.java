@@ -11,10 +11,7 @@ import com.mjv.contrateme.services.EmpresaService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -53,6 +50,12 @@ public class EmpresaResource {
                                                @RequestBody @Valid EmpresaDto empresaDto) {
 
         return ResponseEntity.status(HttpStatus.OK).body(this.empresaService.update(empresaDto, id));
+    }
+ 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteEmpresa(@PathVariable(value="id") Integer id) {
+        empresaService.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Empresa deletada!");
     }
 
 }

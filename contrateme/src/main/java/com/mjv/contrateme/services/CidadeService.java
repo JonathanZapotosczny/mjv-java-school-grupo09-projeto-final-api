@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import javax.transaction.Transactional;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
@@ -47,10 +48,20 @@ public class CidadeService {
         if (optCidade.isEmpty()) {
             throw new NotFoundException("CIDADE não encontrada!");
         }
-
         Cidade cidadeAtualizada = this.modelMapper.map(cidadeDto, Cidade.class);
         cidadeAtualizada.setId(optCidade.get().getId());
 
         return this.cidadeRepository.save(cidadeAtualizada);
+
+    }
+   @Transactional
+    public void delete(Integer id) {
+        Optional<Cidade> optCidade = cidadeRepository.findById(id);
+
+        if (optCidade.isEmpty()) {
+            throw new NotFoundException("Cidade não encontrada!");
+        }
+
+        cidadeRepository.deleteById(id);
     }
 }

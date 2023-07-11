@@ -58,4 +58,15 @@ public class ProfissaoService {
         return this.profissaoRepository.save(profissaoAtualizada);
     }
 
+    @Transactional
+    public void delete(Integer id) {
+        Optional<Profissao> optProfissao = profissaoRepository.findById(id);
+
+        if (optProfissao.isEmpty()) {
+            throw new NotFoundException("Profissão não encontrada!");
+        }
+
+        profissaoRepository.deleteById(id);
+    }
+
 }

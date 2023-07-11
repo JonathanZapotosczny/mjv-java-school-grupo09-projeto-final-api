@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import javax.transaction.Transactional;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
@@ -50,6 +51,17 @@ public class EmpresaService {
         empresaAtualizada.setId(optEmpresa.get().getId());
 
         return this.empresaRepository.save(empresaAtualizada);
+    }
+
+    @Transactional
+    public void delete(Integer id) {
+        Optional<Empresa> optEmpresa = empresaRepository.findById(id);
+
+        if (optEmpresa.isEmpty()) {
+            throw new NotFoundException("Empresa não encontrada!");
+        }
+
+        empresaRepository.deleteById(id);
     }
 
 }

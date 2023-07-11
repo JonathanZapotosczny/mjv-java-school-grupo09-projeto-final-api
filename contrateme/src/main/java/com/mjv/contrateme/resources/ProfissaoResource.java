@@ -12,10 +12,7 @@ import com.mjv.contrateme.services.ProfissaoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -56,5 +53,10 @@ public class ProfissaoResource {
 
         return ResponseEntity.status(HttpStatus.OK).body(this.profissaoService.update(profissaoDto, id));
   }
+  @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteProfissao(@PathVariable(value="id") Integer id) {
+        profissaoService.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Profissão deletada!");
+    }
 
 }
