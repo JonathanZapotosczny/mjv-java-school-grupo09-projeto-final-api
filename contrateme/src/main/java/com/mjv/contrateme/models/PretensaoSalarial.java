@@ -11,7 +11,6 @@ import javax.persistence.Embeddable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
-
 public class PretensaoSalarial {
 
     @Column(nullable = false)

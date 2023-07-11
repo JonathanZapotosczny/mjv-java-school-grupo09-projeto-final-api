@@ -1,9 +1,7 @@
 package com.mjv.contrateme.services;
 
-import com.mjv.contrateme.dtos.CadastroExperienciaDto;
 import com.mjv.contrateme.dtos.HabilidadeDto;
 import com.mjv.contrateme.exceptions.NotFoundException;
-import com.mjv.contrateme.models.CadastroExperiencia;
 import com.mjv.contrateme.models.Habilidade;
 import com.mjv.contrateme.repositories.HabilidadeRepository;
 import org.modelmapper.ModelMapper;

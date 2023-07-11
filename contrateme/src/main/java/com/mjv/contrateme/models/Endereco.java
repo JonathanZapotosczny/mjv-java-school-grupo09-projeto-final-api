@@ -1,6 +1,5 @@
 package com.mjv.contrateme.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +13,6 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
-
 public class Endereco {
 
     @Column(nullable = false)
@@ -32,6 +30,6 @@ public class Endereco {
     @Column(nullable = false, length = 60)
     private String bairro;
 
-    @ManyToOne( cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Cidade cidade;
 }

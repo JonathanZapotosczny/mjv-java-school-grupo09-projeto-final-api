@@ -10,7 +10,6 @@ import javax.validation.constraints.NotBlank;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class CidadeDto {
 
     @NotBlank(message = "O campo NOME é obrigátorio!")
