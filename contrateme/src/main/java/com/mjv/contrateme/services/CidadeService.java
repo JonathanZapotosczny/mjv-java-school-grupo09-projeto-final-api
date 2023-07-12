@@ -16,6 +16,7 @@ import java.util.Optional;
 public class CidadeService {
 
     private final CidadeRepository cidadeRepository;
+
     private final ModelMapper modelMapper;
 
     public CidadeService(CidadeRepository cidadeRepository, ModelMapper modelMapper) {
@@ -23,12 +24,17 @@ public class CidadeService {
         this.modelMapper = modelMapper;
     }
 
+    @Transactional
+    public Cidade create(CidadeDto cidadeDto) {
+
+        Cidade cidade = modelMapper.map(cidadeDto, Cidade.class);
+        return cidadeRepository.save(cidade);
+    }
+
     public Cidade findById(Integer id) {
 
         Optional<Cidade> optCidade = this.cidadeRepository.findById(id);
-
-        return optCidade.orElseThrow(() -> new NotFoundException("Cidade não encontrada na base de dados."));
-
+        return optCidade.orElseThrow(() -> new NotFoundException("CIDADE não encontrada na base de dados!"));
     }
 
     public Page<Cidade> findAll(Pageable pageable) {
@@ -36,34 +42,27 @@ public class CidadeService {
     }
 
     @Transactional
-    public Cidade create(CidadeDto cidadeDto) {
-
-        Cidade cidade = modelMapper.map(cidadeDto, Cidade.class);
-
-        return cidadeRepository.save(cidade);
-
-    }
-
-    @Transactional
     public Cidade update(CidadeDto cidadeDto, Integer id) {
+
         Optional<Cidade> optCidade = this.cidadeRepository.findById(id);
 
         if (optCidade.isEmpty()) {
-            throw new NotFoundException("CIDADE não encontrada!");
+            throw new NotFoundException("CIDADE não encontrada na base de dados!");
         }
+
         Cidade cidadeAtualizada = this.modelMapper.map(cidadeDto, Cidade.class);
         cidadeAtualizada.setId(optCidade.get().getId());
 
         return this.cidadeRepository.save(cidadeAtualizada);
-
     }
 
     @Transactional
     public void delete(Integer id) {
+
         Optional<Cidade> optCidade = cidadeRepository.findById(id);
 
         if (optCidade.isEmpty()) {
-            throw new NotFoundException("Cidade não encontrada!");
+            throw new NotFoundException("CIDADE não encontrada na base de dados!");
         }
 
         cidadeRepository.deleteById(id);

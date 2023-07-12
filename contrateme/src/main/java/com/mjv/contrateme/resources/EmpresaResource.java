@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/v1/contratame/empresa")
+@RequestMapping("/v1/contrateme/empresas")
 @Tag(name = "Empresa")
 public class EmpresaResource {
 
@@ -23,16 +23,14 @@ public class EmpresaResource {
         this.empresaService = empresaService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Empresa> getOneEmpresa(@PathVariable(value = "id") Integer id) {
-
-        return ResponseEntity.status(HttpStatus.OK).body(this.empresaService.findById(id));
-
-    }
-
     @PostMapping
     public ResponseEntity<Empresa> createEmpresa(@RequestBody @Valid EmpresaDto empresaDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.empresaService.create(empresaDto));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Empresa> getOneEmpresa(@PathVariable(value = "id") Integer id) {
+        return ResponseEntity.status(HttpStatus.OK).body(this.empresaService.findById(id));
     }
 
     @GetMapping
@@ -43,14 +41,12 @@ public class EmpresaResource {
     @PutMapping("/{id}")
     public ResponseEntity<Empresa> updateEmpresa(@PathVariable(value = "id") Integer id,
                                                  @RequestBody @Valid EmpresaDto empresaDto) {
-
         return ResponseEntity.status(HttpStatus.OK).body(this.empresaService.update(empresaDto, id));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteEmpresa(@PathVariable(value = "id") Integer id) {
         empresaService.delete(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Empresa deletada!");
+        return ResponseEntity.status(HttpStatus.OK).body("EMPRESA deletada com sucesso!");
     }
-
 }

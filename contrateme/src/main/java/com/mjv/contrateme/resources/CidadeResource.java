@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/v1/contratame/cidade")
+@RequestMapping("/v1/contrateme/cidades")
 @Tag(name = "Cidade")
 public class CidadeResource {
 
@@ -23,16 +23,14 @@ public class CidadeResource {
         this.cidadeService = cidadeService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Cidade> getOneCidade(@PathVariable(value = "id") Integer id) {
-
-        return ResponseEntity.status(HttpStatus.OK).body(this.cidadeService.findById(id));
-
-    }
-
     @PostMapping
     public ResponseEntity<Cidade> createCidade(@RequestBody @Valid CidadeDto cidadeDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.cidadeService.create(cidadeDto));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Cidade> getOneCidade(@PathVariable(value = "id") Integer id) {
+        return ResponseEntity.status(HttpStatus.OK).body(this.cidadeService.findById(id));
     }
 
     @GetMapping
@@ -43,15 +41,12 @@ public class CidadeResource {
     @PutMapping("/{id}")
     public ResponseEntity<Cidade> updateCidade(@PathVariable(value = "id") Integer id,
                                                @RequestBody @Valid CidadeDto cidadeDto) {
-
         return ResponseEntity.status(HttpStatus.OK).body(this.cidadeService.update(cidadeDto, id));
-
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteCidade(@PathVariable(value = "id") Integer id) {
         this.cidadeService.delete(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Cidade deletada!");
+        return ResponseEntity.status(HttpStatus.OK).body("CIDADE deletada com sucesso!");
     }
-
 }

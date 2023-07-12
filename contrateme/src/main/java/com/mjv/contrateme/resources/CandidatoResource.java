@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/v1/contratame/candidato")
+@RequestMapping("/v1/contrateme/candidatos")
 @Tag(name = "Candidato")
 public class CandidatoResource {
 
@@ -23,16 +23,14 @@ public class CandidatoResource {
         this.candidatoService = candidatoService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CadastroCandidato> getOneCandidato(@PathVariable(value = "id") Integer id) {
-
-        return ResponseEntity.status(HttpStatus.OK).body(this.candidatoService.findById(id));
-
-    }
-
     @PostMapping
     public ResponseEntity<CadastroCandidato> createCandidato(@RequestBody @Valid CadastroCandidatoDto candidatoDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.candidatoService.create(candidatoDto));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CadastroCandidato> getOneCandidato(@PathVariable(value = "id") Integer id) {
+        return ResponseEntity.status(HttpStatus.OK).body(this.candidatoService.findById(id));
     }
 
     @GetMapping
@@ -43,13 +41,12 @@ public class CandidatoResource {
     @PutMapping("/{id}")
     public ResponseEntity<CadastroCandidato> updateCandidato(@PathVariable(value = "id") Integer id,
                                                              @RequestBody @Valid CadastroCandidatoDto candidatoDto) {
-
         return ResponseEntity.status(HttpStatus.OK).body(this.candidatoService.update(candidatoDto, id));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteCandidato(@PathVariable(value = "id") Integer id) {
         this.candidatoService.delete(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Candidato deletado!");
+        return ResponseEntity.status(HttpStatus.OK).body("CANDIDATO(a) deletado(a) com sucesso!");
     }
 }

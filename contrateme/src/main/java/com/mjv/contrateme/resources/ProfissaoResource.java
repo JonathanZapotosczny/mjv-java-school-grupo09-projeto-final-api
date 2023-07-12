@@ -1,6 +1,5 @@
 package com.mjv.contrateme.resources;
 
-
 import com.mjv.contrateme.dtos.ProfissaoDto;
 import com.mjv.contrateme.models.Profissao;
 import com.mjv.contrateme.services.ProfissaoService;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/v1/contratame/profissao")
+@RequestMapping("/v1/contrateme/profissoes")
 @Tag(name = "Profissao")
 public class ProfissaoResource {
 
@@ -24,11 +23,14 @@ public class ProfissaoResource {
         this.profissaoService = profissaoService;
     }
 
+    @PostMapping
+    public ResponseEntity<Profissao> createProfissao(@RequestBody @Valid ProfissaoDto profissaoDto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.profissaoService.create(profissaoDto));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Profissao> getOneProfissao(@PathVariable(value = "id") Integer id) {
-
         return ResponseEntity.status(HttpStatus.OK).body(this.profissaoService.findById(id));
-
     }
 
     @GetMapping
@@ -36,22 +38,15 @@ public class ProfissaoResource {
         return ResponseEntity.status(HttpStatus.OK).body(this.profissaoService.findAll(pageable));
     }
 
-    @PostMapping
-    public ResponseEntity<Profissao> createProfissao(@RequestBody @Valid ProfissaoDto profissaoDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.profissaoService.create(profissaoDto));
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<Profissao> updateProfissao(@PathVariable(value = "id") Integer id,
                                                      @RequestBody @Valid ProfissaoDto profissaoDto) {
-
         return ResponseEntity.status(HttpStatus.OK).body(this.profissaoService.update(profissaoDto, id));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteProfissao(@PathVariable(value = "id") Integer id) {
         profissaoService.delete(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Profissão deletada!");
+        return ResponseEntity.status(HttpStatus.OK).body("PROFISSÃO deletada com sucesso!");
     }
-
 }

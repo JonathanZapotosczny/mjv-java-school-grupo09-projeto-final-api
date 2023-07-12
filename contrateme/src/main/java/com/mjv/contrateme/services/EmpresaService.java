@@ -14,6 +14,7 @@ import java.util.Optional;
 public class EmpresaService {
 
     private final EmpresaRepository empresaRepository;
+
     private final ModelMapper modelMapper;
 
     public EmpresaService(EmpresaRepository empresaRepository, ModelMapper modelMapper) {
@@ -21,29 +22,30 @@ public class EmpresaService {
         this.modelMapper = modelMapper;
     }
 
+   @Transactional
+   public Empresa create(EmpresaDto empresaDto) {
+
+       Empresa empresa = modelMapper.map(empresaDto, Empresa.class);
+       return empresaRepository.save(empresa);
+   }
+
     public Empresa findById(Integer id) {
 
         Optional<Empresa> optEmpresa = this.empresaRepository.findById(id);
-
-        return optEmpresa.orElseThrow(() -> new NotFoundException("Empresa não encontrada na base de dados."));
-
+        return optEmpresa.orElseThrow(() -> new NotFoundException("EMPRESA não encontrada na base de dados!"));
     }
 
-   public Page<Empresa> findAll(Pageable pageable) {
+    public Page<Empresa> findAll(Pageable pageable) {
         return this.empresaRepository.findAll(pageable);
+    }
 
-   }
-   @Transactional
-   public Empresa create(EmpresaDto empresaDto) {
-        Empresa empresa = modelMapper.map(empresaDto, Empresa.class);
-        return empresaRepository.save(empresa);
-      }
   @Transactional
     public Empresa update(EmpresaDto empresaDto, Integer id) {
+
         Optional<Empresa> optEmpresa = this.empresaRepository.findById(id);
 
         if (optEmpresa.isEmpty()) {
-            throw new NotFoundException("Empresa não encontrada!");
+            throw new NotFoundException("EMPRESA não encontrada na base de dados!");
         }
 
         Empresa empresaAtualizada = this.modelMapper.map(empresaDto, Empresa.class);
@@ -54,13 +56,13 @@ public class EmpresaService {
 
     @Transactional
     public void delete(Integer id) {
+
         Optional<Empresa> optEmpresa = empresaRepository.findById(id);
 
         if (optEmpresa.isEmpty()) {
-            throw new NotFoundException("Empresa não encontrada!");
+            throw new NotFoundException("EMPRESA não encontrada na base de dados!");
         }
 
         empresaRepository.deleteById(id);
     }
-
 }

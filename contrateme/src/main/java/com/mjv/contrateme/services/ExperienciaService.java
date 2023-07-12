@@ -28,26 +28,23 @@ public class ExperienciaService {
         this.modelMapper = modelMapper;
     }
 
-    public CadastroExperiencia findById(Integer id) {
-
-        Optional<CadastroExperiencia> optExperiencia = this.experienciaRepository.findById(id);
-
-        return optExperiencia.orElseThrow(() -> new NotFoundException("Experiencia não encontrada na base de dados."));
-
-    }
-
     @Transactional
     public CadastroExperiencia create(CadastroExperienciaDto experienciaDto) {
 
         Profissao profissao = profissaoService.findById(experienciaDto.getProfissao());
         CadastroExperiencia experiencia = modelMapper.map(experienciaDto, CadastroExperiencia.class);
         experiencia.setProfissao(profissao);
-        return experienciaRepository.save(experiencia);
 
+        return experienciaRepository.save(experiencia);
+    }
+
+    public CadastroExperiencia findById(Integer id) {
+
+        Optional<CadastroExperiencia> optExperiencia = this.experienciaRepository.findById(id);
+        return optExperiencia.orElseThrow(() -> new NotFoundException("EXPERIÊNCIA não encontrada na base de dados!"));
     }
 
     public List<CadastroExperiencia> findByIdList(List<Integer> ids) {
         return this.experienciaRepository.findAllById(ids);
     }
-
 }

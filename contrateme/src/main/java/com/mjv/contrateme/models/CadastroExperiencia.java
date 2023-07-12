@@ -1,6 +1,5 @@
 package com.mjv.contrateme.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mjv.contrateme.enums.RegimeContratacao;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +9,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "experiencia")
+@Table(name = "tb_experiencia")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,7 +17,6 @@ public class CadastroExperiencia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
     private Integer id;
 
     @Column(nullable = false)
@@ -41,7 +39,4 @@ public class CadastroExperiencia {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Profissao profissao;
-
-  /*  @ManyToOne()
-    private CadastroCandidato candidato;*/
 }
