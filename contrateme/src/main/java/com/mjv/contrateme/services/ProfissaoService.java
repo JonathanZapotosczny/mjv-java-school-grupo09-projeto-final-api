@@ -16,6 +16,7 @@ import java.util.Optional;
 public class ProfissaoService {
 
     private final ProfissaoRepository profissaoRepository;
+
     private final ModelMapper modelMapper;
 
     public ProfissaoService(ProfissaoRepository profissaoRepository, ModelMapper modelMapper) {
@@ -23,25 +24,21 @@ public class ProfissaoService {
         this.modelMapper = modelMapper;
     }
 
-    public Profissao findById(Integer id) {
-
-        Optional<Profissao> optProfissao = this.profissaoRepository.findById(id);
-
-        return optProfissao.orElseThrow(() -> new NotFoundException("Profissão não encontrada na base de dados."));
-
-    }
-
     @Transactional
     public Profissao create(ProfissaoDto profissaoDto) {
 
         Profissao profissao = modelMapper.map(profissaoDto, Profissao.class);
-
         return profissaoRepository.save(profissao);
+    }
+
+    public Profissao findById(Integer id) {
+
+        Optional<Profissao> optProfissao = this.profissaoRepository.findById(id);
+        return optProfissao.orElseThrow(() -> new NotFoundException("PROFISSÃO não encontrada na base de dados!"));
     }
 
     public Page<Profissao> findAll(Pageable pageable) {
         return this.profissaoRepository.findAll(pageable);
-
     }
 
     @Transactional
@@ -50,7 +47,7 @@ public class ProfissaoService {
         Optional<Profissao> optProfissao = this.profissaoRepository.findById(id);
 
         if (optProfissao.isEmpty()) {
-            throw new NotFoundException("Profissão não encontrada");
+            throw new NotFoundException("PROFISSÃO não encontrada na base de dados!");
         }
 
         Profissao profissaoAtualizada = this.modelMapper.map(profissaoDto, Profissao.class);
@@ -61,13 +58,13 @@ public class ProfissaoService {
 
     @Transactional
     public void delete(Integer id) {
+
         Optional<Profissao> optProfissao = profissaoRepository.findById(id);
 
         if (optProfissao.isEmpty()) {
-            throw new NotFoundException("Profissão não encontrada!");
+            throw new NotFoundException("PROFISSÃO não encontrada na base de dados!");
         }
 
         profissaoRepository.deleteById(id);
     }
-
 }

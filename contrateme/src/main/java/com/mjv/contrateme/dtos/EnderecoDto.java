@@ -10,7 +10,6 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class EnderecoDto {
 
     @NotNull(message = "O campo CEP é obrigátorio!")

@@ -25,30 +25,21 @@ public class CandidatoService {
 
     @Autowired
     private ExperienciaService experienciaService;
+
     @Autowired
     private ProfissaoService profissaoService;
 
     @Autowired
     private CidadeService cidadeService;
+
     @Autowired
     private HabilidadeService habilidadeService;
+
     private final ModelMapper modelMapper;
 
     public CandidatoService(CandidatoRepository candidatoRepository, ModelMapper modelMapper) {
         this.candidatoRepository = candidatoRepository;
         this.modelMapper = modelMapper;
-    }
-
-    public CadastroCandidato findById(Integer id) {
-
-        Optional<CadastroCandidato> optCandidato = this.candidatoRepository.findById(id);
-
-        return optCandidato.orElseThrow(() -> new NotFoundException("Candidato não encontrada na base de dados."));
-
-    }
-
-    public Page<CadastroCandidato> findAll(Pageable pageable) {
-        return this.candidatoRepository.findAll(pageable);
     }
 
     @Transactional
@@ -59,23 +50,35 @@ public class CandidatoService {
         List<Habilidade> habilidades = habilidadeService.findByIdList(cadastroCandidatoDto.getHabilidades());
         CadastroCandidato candidato = modelMapper.map(cadastroCandidatoDto, CadastroCandidato.class);
         List<CadastroExperienciaDto> experiencias = cadastroCandidatoDto.getExperiencias();
+
         for (int i = 0; i < experiencias.size(); i++) {
             Profissao p = profissaoService.findById(experiencias.get(i).getProfissao());
             candidato.getExperiencias().get(i).setProfissao(p);
         }
+
         candidato.getEndereco().setCidade(cidade);
         candidato.setProfissao(profissao);
         candidato.setHabilidades(habilidades);
         return candidatoRepository.save(candidato);
+    }
 
+    public CadastroCandidato findById(Integer id) {
+
+        Optional<CadastroCandidato> optCandidato = this.candidatoRepository.findById(id);
+        return optCandidato.orElseThrow(() -> new NotFoundException("CANDIDATO(a) não encontrado(a) na base de dados!"));
+    }
+
+    public Page<CadastroCandidato> findAll(Pageable pageable) {
+        return this.candidatoRepository.findAll(pageable);
     }
 
     @Transactional
     public CadastroCandidato update(CadastroCandidatoDto cadastroCandidatoDto, Integer id) {
+
         Optional<CadastroCandidato> optCandidato = this.candidatoRepository.findById(id);
 
         if (optCandidato.isEmpty()) {
-            throw new NotFoundException("CANDIDATO não encontrado (a) na base de dados!");
+            throw new NotFoundException("CANDIDATO(a) não encontrado(a) na base de dados!");
         }
 
         CadastroCandidato cadastroCandidatoAtualizado = this.modelMapper.map(cadastroCandidatoDto, CadastroCandidato.class);
@@ -83,18 +86,17 @@ public class CandidatoService {
         cadastroCandidatoAtualizado.setCpf(optCandidato.get().getCpf());
 
         return this.candidatoRepository.save(cadastroCandidatoAtualizado);
-
     }
 
     @Transactional
     public void delete(Integer id) {
+
         Optional<CadastroCandidato> optCandidato = candidatoRepository.findById(id);
 
         if (optCandidato.isEmpty()) {
-            throw new NotFoundException("Candidato não encotrado!");
+            throw new NotFoundException("CANDIDATO(a) não encontrado(a) na base de dados!");
         }
 
         candidatoRepository.deleteById(id);
     }
-
 }

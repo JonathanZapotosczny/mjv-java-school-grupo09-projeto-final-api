@@ -37,9 +37,4 @@ public class CadastroExperienciaDto {
 
     @NotNull(message = "O campo PROFISSÃO é obrigátorio!")
     private Integer profissao;
-
-/*
-circular references is discouraged and they are prohibited by default
-    @NotNull(message = "O campo CANDIDATO é obrigátorio!")
-    private Integer candidato;*/
 }
