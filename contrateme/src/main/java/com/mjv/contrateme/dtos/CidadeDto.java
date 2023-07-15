@@ -12,13 +12,13 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class CidadeDto {
 
-    @NotBlank(message = "O campo NOME é obrigátorio!")
+    @NotBlank(message = "O campo NOME é obrigatório!")
     private String nome;
 
-    @NotBlank(message = "O campo ESTADO é obrigátorio!")
+    @NotBlank(message = "O campo ESTADO é obrigatório!")
     private String estado;
 
-    @NotBlank(message = "O campo SIGLA é obrigátorio!")
+    @NotBlank(message = "O campo SIGLA é obrigatório!")
     @Length(min = 2, max = 2, message = "O campo SIGLA deverá ter exatamente {max} caracteres!")
     private String sigla;
 }

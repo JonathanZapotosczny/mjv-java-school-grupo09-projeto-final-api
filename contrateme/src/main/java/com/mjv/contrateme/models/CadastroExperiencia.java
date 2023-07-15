@@ -4,6 +4,7 @@ import com.mjv.contrateme.enums.RegimeContratacao;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -23,7 +24,7 @@ public class CadastroExperiencia {
     private Double salario;
 
     @Column(nullable = false)
-    private boolean EmpregoAtual;
+    private boolean empregoAtual;
 
     @Column(nullable = false, columnDefinition = "DATE")
     private LocalDate dataContratacao;
@@ -31,8 +32,8 @@ public class CadastroExperiencia {
     @Column(columnDefinition = "DATE")
     private LocalDate dataDesligamento;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private Empresa empresa;
+    @Column(nullable = false, length = 100)
+    private String empresa;
 
     @Enumerated(EnumType.STRING)
     private RegimeContratacao regimeContratacao;

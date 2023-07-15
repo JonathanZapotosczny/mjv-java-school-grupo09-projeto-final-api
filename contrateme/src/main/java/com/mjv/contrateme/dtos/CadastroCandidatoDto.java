@@ -20,39 +20,38 @@ import java.util.List;
 @AllArgsConstructor
 public class CadastroCandidatoDto {
 
-    @NotBlank(message = "O campo NOME é obrigátorio!")
+    @NotBlank(message = "O campo NOME é obrigatório!")
     private String nome;
 
-    @NotBlank(message = "O campo CPF é obrigátorio!")
+    @NotBlank(message = "O campo CPF é obrigatório!")
     @Length(min = 14, max = 14, message = "O campo CPF deverá ter exatamente {max} caracteres!")
     @CPF
     private String cpf;
 
-    @NotNull(message = "O campo DATA DE NASCIMENTO é obrigátorio!")
+    @NotNull(message = "O campo DATA DE NASCIMENTO é obrigatório!")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataNascimento;
 
-    @NotNull(message = "Os campos de TELEFONE CELULAR são obrigátorios!")
+    @NotNull(message = "Os campos de TELEFONE CELULAR são obrigatórios!")
     private CelularDto telefoneCelular;
 
     private Long telefoneFixo;
 
-    @NotBlank(message = "O campo E-MAIL é obrigátorio!")
+    @NotBlank(message = "O campo E-MAIL é obrigatório!")
     @Email
     private String email;
 
-    @NotNull(message = "Os campos de PROFISSÃO são obrigátorios!")
+    @NotNull(message = "Os campos de PROFISSÃO são obrigatórios!")
     private Integer profissao;
 
-    @NotNull(message = "Os campos de ENDEREÇO são obrigátorios!")
+    @NotNull(message = "Os campos de ENDEREÇO são obrigatórios!")
     private EnderecoDto endereco;
 
-    @NotEmpty(message = "Os campos de EXPERIÊNCIAS são obrigátorios!")
+    @NotEmpty(message = "Os campos de EXPERIÊNCIAS são obrigatórios!")
     private List<CadastroExperienciaDto> experiencias = new ArrayList<>();
 
-    @NotEmpty(message = "Os campos de HABILIDADES são obrigátorios!")
     private List<Integer> habilidades = new ArrayList<>();
 
-    @NotNull(message = "Os campos de PRETENSÃO SALARIAL são obrigátorios!")
+    @NotNull(message = "Os campos de PRETENSÃO SALARIAL são obrigatórios!")
     private PretensaoSalarialDto pretensaoSalarial;
 }

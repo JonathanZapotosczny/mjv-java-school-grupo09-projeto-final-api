@@ -12,11 +12,11 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class PretensaoSalarialDto {
 
-    @NotNull(message = "O campo VALOR MÍNIMO é obrigátorio!")
+    @NotNull(message = "O campo VALOR MÍNIMO é obrigatório!")
     @DecimalMin(value = "0.0", inclusive = false, message = "O VALOR MÍNIMO deve ser maior que zero!")
     private Double valorMinimo;
 
-    @NotNull(message = "O campo VALOR MÁXIMO é obrigátorio!")
+    @NotNull(message = "O campo VALOR MÁXIMO é obrigatório!")
     @DecimalMin(value = "0.0", inclusive = false, message = "O VALOR MÁXIMO deve ser maior que zero!")
     private Double valorMaximo;
 }
