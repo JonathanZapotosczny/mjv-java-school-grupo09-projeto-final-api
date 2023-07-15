@@ -1,11 +1,8 @@
 package com.mjv.contrateme.services;
 
 import com.mjv.contrateme.dtos.HabilidadeDto;
-import com.mjv.contrateme.dtos.ProfissaoDto;
 import com.mjv.contrateme.exceptions.NotFoundException;
-import com.mjv.contrateme.models.Empresa;
 import com.mjv.contrateme.models.Habilidade;
-import com.mjv.contrateme.models.Profissao;
 import com.mjv.contrateme.repositories.HabilidadeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;

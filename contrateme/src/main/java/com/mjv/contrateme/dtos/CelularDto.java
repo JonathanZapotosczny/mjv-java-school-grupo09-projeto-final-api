@@ -11,9 +11,9 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class CelularDto {
 
-    @NotNull(message = "O campo NÚMERO é obrigátorio!")
+    @NotNull(message = "O campo NÚMERO é obrigatório!")
     private Long numero;
 
-    @NotNull(message = "O campo WHATSAPP é obrigátorio!")
+    @NotNull(message = "O campo WHATSAPP é obrigatório!")
     private boolean whatsapp;
 }

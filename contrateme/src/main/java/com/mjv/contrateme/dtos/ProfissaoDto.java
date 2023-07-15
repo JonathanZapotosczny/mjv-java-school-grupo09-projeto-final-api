@@ -11,6 +11,6 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class ProfissaoDto {
 
-    @NotBlank(message = "O campo NOME é obrigátorio!")
+    @NotBlank(message = "O campo NOME é obrigatório!")
     private String nome;
 }
