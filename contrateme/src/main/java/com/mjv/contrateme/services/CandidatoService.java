@@ -3,6 +3,7 @@ package com.mjv.contrateme.services;
 import com.mjv.contrateme.dtos.CadastroCandidatoDto;
 import com.mjv.contrateme.dtos.CadastroCandidatoDtoResponse;
 import com.mjv.contrateme.dtos.CadastroExperienciaDto;
+import com.mjv.contrateme.enums.Sexo;
 import com.mjv.contrateme.exceptions.NotFoundException;
 import com.mjv.contrateme.models.CadastroCandidato;
 import com.mjv.contrateme.models.Cidade;
@@ -18,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -81,6 +81,10 @@ public class CandidatoService {
     }
 
     public List<CadastroCandidato> buscarCandidatoSemHabilidade(String nome) {
+
+        if(nome.isBlank()) {
+            return this.candidatoRepository.buscarCandidatosSemHabilidade();
+        }
         return this.candidatoRepository.buscarCandidatosSemHabilidade(nome);
     }
 
@@ -134,6 +138,22 @@ public class CandidatoService {
 
     public List<String> candidatosPorProfissao() {
         return this.candidatoRepository.candidatosPorProfissao();
+    }
+
+    public List<CadastroCandidato> candidatosPorProfisaoESalario(String nome) {
+
+        if(nome.isBlank()) {
+            return this.candidatoRepository.candidatosPorProfissaoESalario();
+        }
+        return this.candidatoRepository.candidatosESalarioPorProfissao(nome);
+    }
+
+    public List<CadastroCandidato> candidatosPorSexoEEndereco(Sexo sexo, String sigla) {
+
+        if(sigla.isBlank()) {
+            return this.candidatoRepository.candidatosPorSexoEEndereco(sexo);
+        }
+        return this.candidatoRepository.candidatosPorSexoEEndereco(sexo, sigla);
     }
 
 

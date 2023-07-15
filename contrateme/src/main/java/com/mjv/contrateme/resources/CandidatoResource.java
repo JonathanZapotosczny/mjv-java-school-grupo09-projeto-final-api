@@ -2,6 +2,7 @@ package com.mjv.contrateme.resources;
 
 import com.mjv.contrateme.dtos.CadastroCandidatoDto;
 import com.mjv.contrateme.dtos.CadastroCandidatoDtoResponse;
+import com.mjv.contrateme.enums.Sexo;
 import com.mjv.contrateme.models.CadastroCandidato;
 import com.mjv.contrateme.services.CandidatoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -97,6 +97,19 @@ public class CandidatoResource {
     @GetMapping("/quantidade-profissionais")
     public ResponseEntity<List<String>> candidatosPorProfissao() {
         return ResponseEntity.status(HttpStatus.OK).body(this.candidatoService.candidatosPorProfissao());
+    }
+
+    @GetMapping("/profissao-e-salario")
+    public ResponseEntity<List<CadastroCandidato>> candidatosPorProfissaoESalario(@RequestParam(value = "nome",
+            required = false, defaultValue = "") String nome) {
+        return ResponseEntity.status(HttpStatus.OK).body(this.candidatoService.candidatosPorProfisaoESalario(nome));
+    }
+
+    @GetMapping("/sexo-e-endereco")
+    public ResponseEntity<List<CadastroCandidato>> candidatosPorSexoEEndereco(@RequestParam(value = "sexo",
+            required = false, defaultValue = "") Sexo sexo, @RequestParam(value = "sigla",
+            required = false, defaultValue = "") String sigla) {
+        return ResponseEntity.status(HttpStatus.OK).body(this.candidatoService.candidatosPorSexoEEndereco(sexo, sigla));
     }
 
     @PutMapping("/{id}")

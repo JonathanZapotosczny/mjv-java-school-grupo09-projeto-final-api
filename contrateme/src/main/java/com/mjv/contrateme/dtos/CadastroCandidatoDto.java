@@ -1,6 +1,7 @@
 package com.mjv.contrateme.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.mjv.contrateme.enums.Sexo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,8 @@ public class CadastroCandidatoDto {
     @NotNull(message = "O campo DATA DE NASCIMENTO é obrigatório!")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataNascimento;
+
+    private String sexo;
 
     @NotNull(message = "Os campos de TELEFONE CELULAR são obrigatórios!")
     private CelularDto telefoneCelular;

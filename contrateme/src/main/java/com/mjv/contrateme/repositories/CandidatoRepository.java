@@ -1,5 +1,6 @@
 package com.mjv.contrateme.repositories;
 
+import com.mjv.contrateme.enums.Sexo;
 import com.mjv.contrateme.models.CadastroCandidato;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,8 +19,8 @@ public interface CandidatoRepository extends JpaRepository<CadastroCandidato, In
     @Query("SELECT c FROM CadastroCandidato c WHERE NOT EXISTS (SELECT h FROM c.habilidades h WHERE h.nome = :nome)")
     List<CadastroCandidato> buscarCandidatosSemHabilidade(@Param("nome") String nome);
 
-    //@Query("SELECT c FROM CadastroCandidato c WHERE NOT EXISTS (SELECT h FROM c.habilidades h WHERE h.nome = :nome)")
-    //List<CadastroCandidato> buscarCandidatosSemHabilidade();
+    @Query("SELECT c FROM CadastroCandidato c WHERE EXISTS (SELECT h FROM c.habilidades h)")
+    List<CadastroCandidato> buscarCandidatosSemHabilidade();
 
     @Query("SELECT CONCAT(p.nome, ' - ', COUNT(*)) FROM CadastroCandidato c JOIN c.profissao p " +
             "JOIN c.endereco.cidade ci WHERE ci.nome = :nome GROUP BY p.nome")
@@ -51,5 +52,16 @@ public interface CandidatoRepository extends JpaRepository<CadastroCandidato, In
     @Query("SELECT CONCAT(p.nome, ' - ', COUNT(c)) FROM CadastroCandidato c JOIN c.profissao p GROUP BY p.nome")
     List<String> candidatosPorProfissao();
 
+    @Query("SELECT c FROM CadastroCandidato c ORDER BY c.profissao.nome, c.pretensaoSalarial.valorMaximo DESC ")
+    List<CadastroCandidato> candidatosPorProfissaoESalario();
+
+    @Query("SELECT c FROM CadastroCandidato c WHERE c.profissao.nome = :nome ORDER BY c.pretensaoSalarial.valorMaximo DESC ")
+    List<CadastroCandidato> candidatosESalarioPorProfissao(@Param("nome") String nome);
+
+    @Query("SELECT c FROM CadastroCandidato c JOIN c.endereco.cidade ci WHERE c.sexo = :sexo AND ci.sigla = :sigla")
+    List<CadastroCandidato> candidatosPorSexoEEndereco(@Param("sexo") Sexo nome, @Param("sigla") String sigla);
+
+    @Query("SELECT c FROM CadastroCandidato c JOIN c.endereco.cidade ci WHERE c.sexo = :sexo")
+    List<CadastroCandidato> candidatosPorSexoEEndereco(@Param("sexo") Sexo nome);
 
 }

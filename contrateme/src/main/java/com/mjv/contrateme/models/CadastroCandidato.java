@@ -1,5 +1,6 @@
 package com.mjv.contrateme.models;
 
+import com.mjv.contrateme.enums.Sexo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,10 @@ public class CadastroCandidato {
 
     @Column(nullable = false, columnDefinition = "DATE")
     private LocalDate dataNascimento;
+
+    @Column(nullable = false, columnDefinition = "VARCHAR(25) DEFAULT 'OUTROS'")
+    @Enumerated(EnumType.STRING)
+    private Sexo sexo;
 
     @Embedded
     @Column(nullable = false)
