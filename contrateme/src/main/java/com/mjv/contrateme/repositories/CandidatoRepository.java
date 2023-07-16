@@ -39,7 +39,7 @@ public interface CandidatoRepository extends JpaRepository<CadastroCandidato, In
     List<CadastroCandidato> candidatoPorExperienciaAtual(@Param("nome") String nome);
 
     @Query("SELECT c, e FROM CadastroCandidato c JOIN c.experiencias e JOIN e.profissao p WHERE " +
-            "e.empregoAtual = true GROUP BY c")
+            "e.empregoAtual = true")
     List<CadastroCandidato> candidatoTrabalhando();
 
     List<CadastroCandidato> findNomeAndProfissaoNomeBy();

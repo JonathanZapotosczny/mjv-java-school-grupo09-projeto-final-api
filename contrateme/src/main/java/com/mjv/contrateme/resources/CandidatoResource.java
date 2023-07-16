@@ -67,7 +67,7 @@ public class CandidatoResource {
         return ResponseEntity.status(HttpStatus.OK).body(this.candidatoService.candidatosPorSexoEEndereco(sexo, sigla));
     }
 
-    @Operation(summary = "Retorna a lista de candidatos que moram na cidade pesquisada.")
+    @Operation(summary = "Retorna o nome da profissão e o número de candidatos que moram na cidade pesquisada.")
     @GetMapping("/por-cidade")
     public ResponseEntity<List<String>> quantidadeProfissionaisPorCidade(@RequestParam(value = "nome") String nome) {
         return ResponseEntity.status(HttpStatus.OK).body(this.candidatoService.quantidadeProfissionaisPorCidade(nome));
