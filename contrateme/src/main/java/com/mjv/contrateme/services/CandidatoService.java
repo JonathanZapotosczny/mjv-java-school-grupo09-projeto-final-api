@@ -77,6 +77,7 @@ public class CandidatoService {
     }
 
     public Integer contarCandidatoComHabilidade(String nome) {
+
         return this.candidatoRepository.contarCandidatosComHabilidade(nome);
     }
 
@@ -86,6 +87,14 @@ public class CandidatoService {
             return this.candidatoRepository.buscarCandidatosSemHabilidade();
         }
         return this.candidatoRepository.buscarCandidatosSemHabilidade(nome);
+    }
+
+    public List<CadastroCandidato> candidatosPorSexoEEndereco(Sexo sexo, String sigla) {
+
+        if(sigla.isBlank()) {
+            return this.candidatoRepository.candidatosPorSexoEEndereco(sexo);
+        }
+        return this.candidatoRepository.candidatosPorSexoEEndereco(sexo, sigla);
     }
 
     public List<String> quantidadeProfissionaisPorCidade(String nome) {
@@ -147,15 +156,6 @@ public class CandidatoService {
         }
         return this.candidatoRepository.candidatosESalarioPorProfissao(nome);
     }
-
-    public List<CadastroCandidato> candidatosPorSexoEEndereco(Sexo sexo, String sigla) {
-
-        if(sigla.isBlank()) {
-            return this.candidatoRepository.candidatosPorSexoEEndereco(sexo);
-        }
-        return this.candidatoRepository.candidatosPorSexoEEndereco(sexo, sigla);
-    }
-
 
     @Transactional
     public CadastroCandidato update(CadastroCandidatoDto cadastroCandidatoDto, Integer id) {
