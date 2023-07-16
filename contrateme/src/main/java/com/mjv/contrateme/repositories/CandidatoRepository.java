@@ -31,7 +31,6 @@ public interface CandidatoRepository extends JpaRepository<CadastroCandidato, In
     List<CadastroCandidato> candidatosComExperienciaPorData(@Param ("dataInicio") LocalDate dataInicio,
                                                             @Param ("dataFim") LocalDate dataFim);
 
-
     @Query("SELECT c FROM CadastroCandidato c JOIN FETCH c.experiencias e WHERE e.empresa = :nome")
     List<CadastroCandidato> candidatoPorExperiencia(@Param("nome") String nome);
 
@@ -42,7 +41,6 @@ public interface CandidatoRepository extends JpaRepository<CadastroCandidato, In
     @Query("SELECT c, e FROM CadastroCandidato c JOIN c.experiencias e JOIN e.profissao p WHERE " +
             "e.empregoAtual = true GROUP BY c")
     List<CadastroCandidato> candidatoTrabalhando();
-
 
     List<CadastroCandidato> findNomeAndProfissaoNomeBy();
 
@@ -56,12 +54,11 @@ public interface CandidatoRepository extends JpaRepository<CadastroCandidato, In
     List<CadastroCandidato> candidatosPorProfissaoESalario();
 
     @Query("SELECT c FROM CadastroCandidato c WHERE c.profissao.nome = :nome ORDER BY c.pretensaoSalarial.valorMaximo DESC ")
-    List<CadastroCandidato> candidatosESalarioPorProfissao(@Param("nome") String nome);
+    List<CadastroCandidato> candidatosPorProfissaoESalario(@Param("nome") String nome);
 
     @Query("SELECT c FROM CadastroCandidato c JOIN c.endereco.cidade ci WHERE c.sexo = :sexo AND ci.sigla = :sigla")
     List<CadastroCandidato> candidatosPorSexoEEndereco(@Param("sexo") Sexo nome, @Param("sigla") String sigla);
 
     @Query("SELECT c FROM CadastroCandidato c JOIN c.endereco.cidade ci WHERE c.sexo = :sexo")
     List<CadastroCandidato> candidatosPorSexoEEndereco(@Param("sexo") Sexo nome);
-
 }

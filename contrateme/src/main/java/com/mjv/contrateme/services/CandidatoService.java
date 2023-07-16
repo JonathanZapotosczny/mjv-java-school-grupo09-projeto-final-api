@@ -81,7 +81,7 @@ public class CandidatoService {
         return this.candidatoRepository.contarCandidatosComHabilidade(nome);
     }
 
-    public List<CadastroCandidato> buscarCandidatoSemHabilidade(String nome) {
+    public List<CadastroCandidato> buscarCandidatosSemHabilidade(String nome) {
 
         if(nome.isBlank()) {
             return this.candidatoRepository.buscarCandidatosSemHabilidade();
@@ -105,19 +105,19 @@ public class CandidatoService {
         return this.candidatoRepository.candidatosComExperienciaPorData(dataInicio, dataFim);
     }
 
-    public List<CadastroCandidato> candidatoPorExperiencia(String nome) {
+    public List<CadastroCandidato> candidatosPorExperiencia(String nome) {
         return this.candidatoRepository.candidatoPorExperiencia(nome);
     }
 
-    public List<CadastroCandidato> candidatoPorExperienciaAtual(String nome) {
+    public List<CadastroCandidato> candidatosPorExperienciaAtual(String nome) {
         return this.candidatoRepository.candidatoPorExperienciaAtual(nome);
     }
 
-    public List<CadastroCandidato> candidatoTrabalhando() {
+    public List<CadastroCandidato> candidatosTrabalhando() {
         return this.candidatoRepository.candidatoTrabalhando();
     }
 
-    public List<CadastroCandidatoDtoResponse> profissaoDoCandidato() {
+    public List<CadastroCandidatoDtoResponse> profissoesDosCandidatos() {
 
         List<CadastroCandidato> cadastroCandidatos = this.candidatoRepository.findNomeAndProfissaoNomeBy();
         List<CadastroCandidatoDtoResponse> cadastroCandidatoDtoResponses = new ArrayList<>();
@@ -130,7 +130,7 @@ public class CandidatoService {
         return cadastroCandidatoDtoResponses;
     }
 
-    public List<CadastroCandidatoDtoResponse> profissaoPorId(Integer id) {
+    public List<CadastroCandidatoDtoResponse> profissoesPorId(Integer id) {
 
         List<CadastroCandidato> cadastroCandidatos = this.candidatoRepository.findNomeAndProfissaoByProfissaoId(id);
         List<CadastroCandidatoDtoResponse> cadastroCandidatoDtoResponses = new ArrayList<>();
@@ -154,7 +154,7 @@ public class CandidatoService {
         if(nome.isBlank()) {
             return this.candidatoRepository.candidatosPorProfissaoESalario();
         }
-        return this.candidatoRepository.candidatosESalarioPorProfissao(nome);
+        return this.candidatoRepository.candidatosPorProfissaoESalario(nome);
     }
 
     @Transactional
