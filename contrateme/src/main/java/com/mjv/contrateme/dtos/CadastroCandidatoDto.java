@@ -1,7 +1,6 @@
 package com.mjv.contrateme.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.mjv.contrateme.enums.Sexo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
