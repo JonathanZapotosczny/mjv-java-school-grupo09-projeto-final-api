@@ -33,9 +33,7 @@ A API conta com uma documentação detalhada disponível no <i>Swagger</i>, que 
 
 ## Diagrama UML 📈
 
-<p align="center">
-  <img src="https://github.com/juuwes/mjv-java-school/assets/93749428/20e1470f-46f8-4c02-98ea-facaa78a5e6f" alt="Sublime's custom image" width="550"/>
-</p>
+  <img src="https://github.com/juuwes/mjv-java-school/assets/93749428/f469b28f-e831-4879-80f0-a86b508a7f14" alt="Sublime's custom image" width="550"/>
 
 ## Estrutura e Pacotes 🗂️
 
@@ -58,10 +56,6 @@ A API conta com uma documentação detalhada disponível no <i>Swagger</i>, que 
 }
 ```
 
-**ROTAS - PROFISSÃO**
-
-<img src="https://github.com/juuwes/mjv-java-school/assets/93749428/d6284a8d-a4e9-41e5-aca7-47d64a605885" alt="Sublime's custom image" width="450"/>
-  
 __________________________
 
 **HABILIDADES** 
@@ -71,9 +65,6 @@ __________________________
   "nome": "Java"
 }
 ```
-**ROTAS - HABILIDADE**
-
-<img src="https://github.com/juuwes/mjv-java-school/assets/93749428/cb017bac-300f-41c9-8caa-afc03c321990" alt="Sublime's custom image" width="450"/>
   
 __________________________
 
@@ -85,10 +76,6 @@ __________________________
   "sigla": "PR"
 }
 ```
-
-**ROTAS - CIDADE**
-
-<img src="https://github.com/juuwes/mjv-java-school/assets/93749428/913c558a-e3d4-4985-bb89-26db28a534c3" alt="Sublime's custom image" width="450"/>
 
 __________________________
 
@@ -143,13 +130,31 @@ __________________________
 }
 ```
 
-**ROTAS - CANDIDATO**
+## Rotas 🧭
 
+**PROFISSÃO**
 
-<img src="https://github.com/juuwes/mjv-java-school/assets/93749428/f5691756-2240-45f7-9f14-424415f30723" alt="Sublime's custom image" width="600"/>
+<img src="https://github.com/juuwes/mjv-java-school/assets/93749428/0f42460d-05be-420c-b212-9cd1465c74c6" alt="Sublime's custom image" width="900"/>
 
-<img src="https://github.com/juuwes/mjv-java-school/assets/93749428/6500c9ea-5e76-437c-8b7b-9fc78fca222d" alt="Sublime's custom image" width="600"/>
+_____________________________
 
+**HABILIDADE**
+
+<img src="https://github.com/juuwes/mjv-java-school/assets/93749428/2a48fea2-752e-4d44-b2c1-a88c7c7604d4" alt="Sublime's custom image" width="900"/>
+
+_____________________________
+
+**CIDADE**
+
+<img src="https://github.com/juuwes/mjv-java-school/assets/93749428/a6c2610c-b6a2-40fc-b3e3-efa7f6be2aef" alt="Sublime's custom image" width="450"/>
+
+_______________________________
+
+**CANDIDATO**
+
+<img src="https://github.com/juuwes/mjv-java-school/assets/93749428/c716ce3b-5bd1-45eb-aed1-5de65c54673c" alt="Sublime's custom image" width="900"/>
+
+<img src="https://github.com/juuwes/mjv-java-school/assets/93749428/6fceb9c9-b8de-472a-9387-0d34da3b3ea9" alt="Sublime's custom image" width="900"/>
 
 ## Colaboradores 💻
 
