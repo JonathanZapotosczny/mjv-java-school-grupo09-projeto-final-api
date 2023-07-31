@@ -59,12 +59,12 @@ public class CandidatoResource {
         return ResponseEntity.status(HttpStatus.OK).body(this.candidatoService.buscarCandidatosSemHabilidade(nome));
     }
 
-    @Operation(summary = "Retorna a lista de candidatos filtrados por sexo e cidade")
-    @GetMapping("/sexo-e-endereco")
-    public ResponseEntity<List<CadastroCandidato>> candidatosPorSexoEEndereco(@RequestParam(value = "sexo",
+    @Operation(summary = "Retorna a lista de candidatos filtrados por sexo e estado")
+    @GetMapping("/sexo-e-estado")
+    public ResponseEntity<List<CadastroCandidato>> candidatosPorSexoEEstado(@RequestParam(value = "sexo",
             required = true) Sexo sexo, @RequestParam(value = "sigla",
             required = false, defaultValue = "") String sigla) {
-        return ResponseEntity.status(HttpStatus.OK).body(this.candidatoService.candidatosPorSexoEEndereco(sexo, sigla));
+        return ResponseEntity.status(HttpStatus.OK).body(this.candidatoService.candidatosPorSexoEEstado(sexo, sigla));
     }
 
     @Operation(summary = "Retorna o nome da profissão e o número de candidatos que moram na cidade pesquisada.")

@@ -89,12 +89,12 @@ public class CandidatoService {
         return this.candidatoRepository.buscarCandidatosSemHabilidade(nome);
     }
 
-    public List<CadastroCandidato> candidatosPorSexoEEndereco(Sexo sexo, String sigla) {
+    public List<CadastroCandidato> candidatosPorSexoEEstado(Sexo sexo, String sigla) {
 
         if(sigla.isBlank()) {
             return this.candidatoRepository.candidatosPorSexoEEndereco(sexo);
         }
-        return this.candidatoRepository.candidatosPorSexoEEndereco(sexo, sigla);
+        return this.candidatoRepository.candidatosPorSexoEEstado(sexo, sigla);
     }
 
     public List<String> quantidadeProfissionaisPorCidade(String nome) {
