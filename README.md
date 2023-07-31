@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/juuwes/mjv-java-school/assets/93749428/2717ad8f-53e4-47e5-9425-72f2fc1bfbb0" alt="Sublime's custom image" width="400"/>
+  <img src="docs/logo.png" alt="logo" width="400"/>
 </p>
 
 <h1 align="center">CONTRATE.me - Projeto Final da MJV School Java</h1>
@@ -8,7 +8,7 @@
 
 ## Documentação 📝
 
-A API conta com uma documentação detalhada disponível no <i>Swagger</i>, que pode ser acessada pelo link: [Contrata.me](http://localhost:8080/swagger-ui/index.html#/)
+A API conta com uma documentação detalhada disponível no <i>Swagger</i>, que pode ser acessada pelo link: [Contrate.me](http://localhost:8080/swagger-ui/index.html#/)
 
 ## Tecnologias e Ferramentas ⚙️
 
@@ -33,7 +33,7 @@ A API conta com uma documentação detalhada disponível no <i>Swagger</i>, que 
 
 ## Diagrama UML 📈
 
-  <img src="https://github.com/juuwes/mjv-java-school/assets/93749428/f469b28f-e831-4879-80f0-a86b508a7f14" alt="Sublime's custom image" width="550"/>
+  <img src="docs/uml.png" alt="uml" width="550"/>
 
 ## Estrutura e Pacotes 🗂️
 
@@ -134,27 +134,25 @@ __________________________
 
 **PROFISSÃO**
 
-<img src="https://github.com/juuwes/mjv-java-school/assets/93749428/0f42460d-05be-420c-b212-9cd1465c74c6" alt="Sublime's custom image" width="900"/>
+<img src="docs/profissões.png" alt="profissões" width="900"/>
 
 _____________________________
 
 **HABILIDADE**
 
-<img src="https://github.com/juuwes/mjv-java-school/assets/93749428/2a48fea2-752e-4d44-b2c1-a88c7c7604d4" alt="Sublime's custom image" width="900"/>
+<img src="docs/habilidades.png" alt="habilidades" width="900"/>
 
 _____________________________
 
 **CIDADE**
 
-<img src="https://github.com/juuwes/mjv-java-school/assets/93749428/a6c2610c-b6a2-40fc-b3e3-efa7f6be2aef" alt="Sublime's custom image" width="450"/>
+<img src="docs/cidades.png" alt="cidades" width="900"/>
 
 _______________________________
 
 **CANDIDATO**
 
-<img src="https://github.com/juuwes/mjv-java-school/assets/93749428/c716ce3b-5bd1-45eb-aed1-5de65c54673c" alt="Sublime's custom image" width="900"/>
-
-<img src="https://github.com/juuwes/mjv-java-school/assets/93749428/6fceb9c9-b8de-472a-9387-0d34da3b3ea9" alt="Sublime's custom image" width="900"/>
+<img src="docs/candidatos.png" alt="candidatos" width="900"/>
 
 ## Colaboradores 💻
 

@@ -57,7 +57,7 @@ public interface CandidatoRepository extends JpaRepository<CadastroCandidato, In
     List<CadastroCandidato> candidatosPorProfissaoESalario(@Param("nome") String nome);
 
     @Query("SELECT c FROM CadastroCandidato c JOIN c.endereco.cidade ci WHERE c.sexo = :sexo AND ci.sigla = :sigla")
-    List<CadastroCandidato> candidatosPorSexoEEndereco(@Param("sexo") Sexo nome, @Param("sigla") String sigla);
+    List<CadastroCandidato> candidatosPorSexoEEstado(@Param("sexo") Sexo nome, @Param("sigla") String sigla);
 
     @Query("SELECT c FROM CadastroCandidato c JOIN c.endereco.cidade ci WHERE c.sexo = :sexo")
     List<CadastroCandidato> candidatosPorSexoEEndereco(@Param("sexo") Sexo nome);
